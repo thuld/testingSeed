@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>TEST-RUNNER AlfaPeople Blog</title>
+    <link rel="stylesheet" href="../node_modules/mocha/mocha.css" />
+  </head>
+  <body>
+    <div id="mocha"></div>
+
+    <!-- dependencies for the test-suite -->
+    <script src="../node_modules/mocha/mocha.js"></script>
+    <script src="../node_modules/chai/chai.js"></script>
+    <script src="../node_modules/sinon/pkg/sinon.js"></script>
+    
+    <script src="../lib/alfa.main.project.js"></script>
+
+    <script>
+     // mocha.ui('bdd');
+      mocha.setup('bdd');
+      mocha.reporter('html');
+      // use chais-implementation of "expect"
+      expect = chai.expect;
+
+    </script>
+
+     <!-- specifications -->
+    <script src="specification.alfa.main.project.js"></script>
+
+    <!-- init mocha --> 
+    <script>
+      if (window.mochaPhantomJS) { mochaPhantomJS.run(); }
+      else { mocha.run(); }
+    </script>
+  </body>
+</html>
