@@ -8,6 +8,9 @@ var rename = require('gulp-rename');
 var cleanup = require('gulp-clean');
 var notify = require("gulp-notify");
 
+// Generates complexity analysis reports
+var plato = require('gulp-plato');
+
 var mochaPhantomJS = require('gulp-mocha-phantomjs');
 var map = require('map-stream');
 
@@ -49,6 +52,21 @@ gulp.task('cleanup', function(){
     return gulp.src('./lib/*.min.js')
         .pipe( cleanup( { read: false } ) )
         .pipe( notify( notifierOptions ));
+});
+
+// Generates Plato complexity analysis
+gulp.task('plato', function() {  
+    gulp.src('./lib/*')
+        .pipe( plato('report', {
+            jshint: {
+                options: {
+                    strict: false
+                }
+            },
+            complexity: {
+                trycatch: true
+            }
+        }));
 });
 
 // run test without mocha:
